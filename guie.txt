@@ -1,0 +1,8 @@
+components
+Page
+  Head  ==> next head
+    Meta  ==> meta tags
+  Head 
+  Header
+    Nav
+Page
