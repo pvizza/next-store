@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import "nprogress/nprogress.css";
 import type { AppProps } from 'next/app'
 import Main from '../components/main/main'
 

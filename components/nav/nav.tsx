@@ -1,13 +1,18 @@
-import Buttom from './style'
 import Link from 'next/link'
 const Nav = () => {
   return (
     <div>
       <Link href="/">
-      <a> Home </a>
+      <a> Inicio </a>
         </Link>
         <Link href="/sell">
-       <a> Sell </a>
+       <a> Productos </a>
+        </Link>
+        <Link href="/sell">
+       <a> Carrito </a>
+        </Link>
+        <Link href="/sell">
+       <a> Cuenta </a>
         </Link>
      
     </div>
