@@ -1,4 +1,4 @@
-const {Text,Select,Relationshio} = require('@keystonejs/fields');
+const {Text,Password,Select,Relationshio} = require('@keystonejs/fields');
 
 const post = {
   fields: {
@@ -6,11 +6,14 @@ const post = {
       type: Text,
       isRequired: true
     },
-    body: {
+    email: {
       type:Text,
-      inMultiline: true,
+      inUnique: true,
+    },
+    password: {
+      type:Password
     }
-  },
+  }
   
 }
 
