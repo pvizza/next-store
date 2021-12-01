@@ -2,22 +2,33 @@ const dotenv = require('dotenv').config()
 const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
+const {Text,Relationship } = require('@keystonejs/fields');
 const { PasswordAuthStrategy } = require('@keystonejs/auth-password')
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 const PROJECT_NAME = 'Backend';
 
+const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
+const { CloudinaryImage } = require('@keystonejs/fields-cloudinary-image');
+
+const fileAdapter = new CloudinaryAdapter({
+  cloudName: process.env.CLOUD_NAME,
+  apiKey: process.env.API_KEY,
+  apiSecret: process.env.API_SECRET,
+  folder: 'store-app',
+});
+
 const adapterConfig = {
   mongoUri: process.env.DATABASE_URL,
 }
-const Schema = require('./First');
 const UserSchema = require('./Users');
 const ProductSchema = require('./Products');
+// const ProductImage = require('./ProductImages');
 
 const isAdmin = ({ authentication: { item: user } }) => {
-  console.log(user)
   return !!user && !!user.isAdmin;
 }
 const isLogged = ({ authentication: { item: user } }) => {
+  console.log(user)
   return !!user 
 }
 
@@ -32,7 +43,6 @@ const keystone = new Keystone({
 });
 
 keystone.createList('Product', ProductSchema);
-keystone.createList('First', Schema);
 keystone.createList('User', {
   fields: UserSchema.fields,
   access: {
@@ -50,6 +60,15 @@ const authStrategy = keystone.createAuthStrategy({
     identityField: 'email',
     secretField: 'password',
   }
+});
+
+keystone.createList('Image', {
+  fields: {
+    image: { type: CloudinaryImage, adapter: fileAdapter },
+    title: { type: Text },
+    product:{ type:Relationship, ref: 'Product.photo',many:true },
+  },
+  labelResolver: item => item.title,
 });
 
 module.exports = {

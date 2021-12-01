@@ -1,7 +1,6 @@
-const {Text,Select } = require('@keystonejs/fields');
+const {Text,Select,Integer,Float,Relationship } = require('@keystonejs/fields');
 
 const Product = {
-  //TODO : add access
   fields: {
     name: {
       type: Text,
@@ -12,12 +11,22 @@ const Product = {
       isRequired: true,
       isMultiline: true
     },
+    photo: {
+      type: Relationship,
+      ref: 'Image.product',
+      many: true,
+      //TODO: THE IMAGE IS IDENTIFY BY THE PRODUCT TITLE (SEE RELATONSHIP)
+    },
     status: {
       type:Select,
       options: [
         {label:'Available',value:'AVAILABLE'},
         {label:'Unavailable',value:'UNAVAILABLE'}
-      ]
+      ],
+      defaultValue: 'AVAILABLE',
+    },
+    price: {
+      type:Float
     }
 
     }
