@@ -15,20 +15,25 @@ Router.events.on('routeChangeComplete', () => {
 
 const Header = () => {
   return (
+  
     <HeaderContainer>
-   
-     
+    <div className='bar'>
+    
         <Logo>
           <Link href="/">
         STORE 
           </Link>
         </Logo>
-      <div className='bar'>
-      <Nav/>
-      </div>
+        <Nav/>
+        </div>
+        <div className='sub-bar'>
+          <p>Search</p>
+        </div>
+      
+     
       
      </HeaderContainer>
-    
+     
   )
 }
 

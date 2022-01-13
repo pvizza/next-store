@@ -8,6 +8,7 @@ z-index: 2;
 transform: skew(-7deg);
 text-align: center;
 margin: 0px;
+padding-left: 2rem;
 a {
     padding: 0.5rem 1rem;
     background: ${props => props.theme.blue};
@@ -24,10 +25,14 @@ a {
 
 export const HeaderContainer = styled.header`
     .bar {
-        border-bottom: 10px solid ${props => props.theme.black};
-        display: flex;
-        justify-content: space-between;
-        align-items: stretch;
-        position: fixed;
-        width: 100%;
-    }`
+    border-bottom: 5px solid var(--black, black);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sub-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border-bottom: 1px solid var(--black, black);
+  }`
