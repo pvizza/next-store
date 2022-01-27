@@ -27,10 +27,11 @@ export const HeaderContainer = styled.header`
     .bar {
     border-bottom: 5px solid var(--black, black);
     display: grid;
-    grid-template-columns: auto 1fr;
-    justify-content: space-between;
-    align-items: center;
+    grid-template-columns: auto auto 1fr;
+    justify-content: flex-start;
+    align-items: stretch;
   }
+ 
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;

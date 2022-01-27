@@ -1,4 +1,4 @@
-const Sell = () => {
+const SignIn = () => {
   return (
     <div>
       
@@ -6,4 +6,4 @@ const Sell = () => {
   )
 }
 
-export default Sell
+export default SignIn 

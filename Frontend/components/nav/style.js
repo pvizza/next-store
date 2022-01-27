@@ -4,7 +4,7 @@ import styled from 'styled-components';
 //   padding: ${padding => padding.button}`;
 
 const NavStyles = styled.ul`
-  margin: 0;
+  margin: 0 0 0 5rem;
   padding: 0;
   display: flex;
   justify-self: end;
@@ -25,6 +25,9 @@ const NavStyles = styled.ul`
       font-size: 10px;
       padding: 0 10px;
     }
+    &.sign {
+      color:red
+    } 
     &:before {
       content: '';
       width: 2px;

@@ -2,7 +2,8 @@ import Link from 'next/link'
 import NavStyles from './style'
 const Nav = () => {
   return (
-   < NavStyles>
+    <>
+   <NavStyles>
       <Link href="/">
       <a> Inicio </a>
         </Link>
@@ -12,11 +13,17 @@ const Nav = () => {
         <Link href="/cart">
        <a> Carrito </a>
         </Link>
-        <Link href="/sell">
-       <a> Cuenta </a>
+        </NavStyles>
+        <NavStyles>
+        <Link href="/acount">
+       <a> Crea Tu Cuenta </a>
+        </Link>
+        <Link href="/signIn">
+        <a> Iniciar Sesión </a>
         </Link>
         </NavStyles>
-    
+       
+    </>
   )
 }
 
