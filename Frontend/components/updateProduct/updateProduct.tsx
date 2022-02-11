@@ -3,8 +3,8 @@ import {useMutation, useQuery} from '@apollo/client'
 import Form from '../form/style';
 import useForm from '../../hooks/useForm';
 import {useRouter} from 'next/router';
-import {UPDATE_PRODUCT_MUTATION} from '../querys/updateProduct'
-import { ALL_PRODUCTS_QUERY } from '../../pages/products';
+import {UPDATE_PRODUCT_MUTATION} from '../querys/updateProduct';
+import { ALL_PRODUCTS_QUERY } from '../querys/allProductsQuery';
 
 interface Props {
   id: string | string[] | undefined
@@ -19,7 +19,7 @@ const UpdateProduct = ({id}:Props) => {
     } 
   });
 
-  const {handleChange, values, clearForm} = useForm(data?.Product)
+  const {handleChange, values, clearForm} = useForm(data?.product)
   console.log(values)
 
   const [updateProduct, {data:update ,error:errorOnUpdate, loading:loadingOnUpdate}] = useMutation(UPDATE_PRODUCT_MUTATION,{
@@ -36,10 +36,10 @@ const UpdateProduct = ({id}:Props) => {
     const res =  await updateProduct()
     clearForm();
 
-    router.push({
-      pathname: `/products/${res.data.updateProduct.id}`,
+    // router.push({
+    //   pathname: `/products/${res.data.updateProduct.id}`,
       
-    });
+    // });
 
     
   }

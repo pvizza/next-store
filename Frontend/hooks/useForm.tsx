@@ -3,7 +3,9 @@ type Prod = {
   name: string,
   price: number,
   description: string,
-  image: File
+  image: File,
+  password: string,
+  email: string,
 }
 
 type Init = object

@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const PRODUCT_DATA_QUERY = gql`
   query PRODUCT_DATA_QUERY($id: ID!) {
-    Product(where: {
+    product(where: {
        id: $id 
       }) {
       name

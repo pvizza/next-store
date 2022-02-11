@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import useForm from '../../hooks/useForm';
-import { ALL_PRODUCTS_QUERY } from '../../pages/products';
+import { ALL_PRODUCTS_QUERY } from '../querys/allProductsQuery';
 import Form from '../form/style';
 import {NEW_PRODUCT_MUTATION} from '../querys/createProductMutation'
 import {useRouter} from 'next/router';

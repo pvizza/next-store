@@ -4,7 +4,6 @@ import Product from "../../components/products/product";
 
 const PageProduct: NextPage = () => {
   const router = useRouter();
-  console.log(router)
   return <div><Product query={router.query}/></div>;
 }
 

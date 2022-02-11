@@ -8,9 +8,8 @@ mutation UPDATE_PRODUCT_MUTATION(
   $price: Float
   $image: Upload
 ) {
-  updateProduct(
-    id: $id
-    data: { 
+  updateProduct(where: {id: $id}, 
+    data: {
       name: $name
       description: $description
       price: $price

@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Product } from "../../interfaces/Product";
 
+
 const ProductBox = styled.div`
   border: 1px solid #eaeaea;
   margin: 0px;
@@ -14,7 +15,6 @@ interface Props {
 //! The main product page should only display one image.
 
 const Products = ({ product }: Props) => {
-  
   return (
     <ProductBox>
       {product.photo.map((photo:string,key:number) => {
@@ -37,7 +37,6 @@ const Products = ({ product }: Props) => {
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       <p>{product.price}</p>
-      <p>{product.id}</p>
       <button>Comprar</button>
     </ProductBox>
   );
