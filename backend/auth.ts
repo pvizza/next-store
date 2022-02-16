@@ -27,6 +27,14 @@ const { withAuth } = createAuth({
     // a new user, filling in these fields.
     fields: ['name', 'email', 'password'],
   },
+
+  passwordResetLink: {
+    sendToken:async ({token,identity}) => {
+     await console.log(token,identity);
+    },
+    tokensValidForMins: 30
+  }
+
 });
 
 // export default withAuth(
@@ -44,5 +52,7 @@ const session = statelessSessions({
   maxAge: sessionMaxAge,
   secret: sessionSecret!,
 });
+
+
 
 export { withAuth, session };
