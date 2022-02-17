@@ -9,6 +9,7 @@ const SignOut = () => {
     refetchQueries: [{query: USER_QUERY}],
   })
 
+  console.log(data)
   
   return <button type='button' onClick={logout}>Cerrar Sesion</button>
 

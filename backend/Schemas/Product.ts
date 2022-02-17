@@ -45,6 +45,9 @@ const Product = list({
       inlineEdit: { fields: ['image', 'title'] }, 
     }
   }),
+  user: relationship({
+    ref: 'User.products',
+  })
 },
 })
 

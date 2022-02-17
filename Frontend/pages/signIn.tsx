@@ -4,8 +4,13 @@ import {USER_AUTH_MUTATION} from '../components/querys/userAuth'
 import {USER_QUERY} from '../components/querys/userQuery'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import ResetPassword from '../components/forgotPassword/forgotPassword'
 
 const SignIn = () => {
+  const [reset, setReset] = useState(false)
+
+
   const router = useRouter()
   const {handleChange, values, clearForm} = useForm({
    email:'',
@@ -36,21 +41,32 @@ const SignIn = () => {
 
  }
 
+ const callback = () => {
+  setReset(false)
+ }
+
 
 if (loading) return <p>Loading...</p>
 // if (error?.message == '[passwordAuth:failure] Authentication failed') return <p>el usuario o contrasena son incorrectos</p>
 
   return (
     <div>
-      
+      {!reset && 
       <Form method='POST' onSubmit={handleSubmit}> 
       <fieldset className='ariabusy' aria-busy={loading}></fieldset>
       <label htmlFor='text'>E-mail</label>
       <input required onChange={handleChange} type="text" placeholder="E-mail" name='email' />
       <label htmlFor='text'>Password</label>
       <input required onChange={handleChange} type="password" placeholder="Password" name='password' />
+      <div >
       <button type='submit'> Iniciar Sesion</button>
+      <button style={{marginLeft:'10px'}} type='button' onClick={() => setReset(true) }> ¿Olvido su clave?</button>
+      </div>
      </Form>
+      
+      }
+      {reset && <ResetPassword callback={callback}/>}
+      
       
     </div>
   )

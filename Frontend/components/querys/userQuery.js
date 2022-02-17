@@ -7,6 +7,21 @@ query {
       id
       email
       name
+      cart {
+        units
+        id
+        product {
+          id
+          name
+          price
+          photo {
+            image {
+              publicUrlTransformed
+            }
+          }
+
+        }
+      }
     }
   }
 }

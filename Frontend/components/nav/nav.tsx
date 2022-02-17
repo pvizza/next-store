@@ -3,6 +3,7 @@ import NavStyles from './style'
 import SignOut from '../signOut/signOut'
 import {useUser} from '../../hooks/useUser'
 import { useState } from 'react'
+import CartComponent from '../cart/cartComponent'
 
 
 const Nav = () => {
@@ -10,6 +11,7 @@ const Nav = () => {
   const [isAdmin,setIsAdmin] = useState<boolean>(true)
   return (
     <>
+    <CartComponent/>
     {isAdmin && 
         <><NavStyles>
           <Link href="/">
@@ -32,7 +34,7 @@ const Nav = () => {
     <><NavStyles>
           <Link href="/">
             <a> Inicio </a>
-          </Link><Link href="/products">
+          </Link><Link href="/products?page=1">
             <a> Productos </a>
           </Link><Link href="/cart">
             <a> Carrito </a>
@@ -52,6 +54,9 @@ const Nav = () => {
     <Link href="/signIn">
     <a> Iniciar Sesión </a>
     </Link>
+    <Link href="/products?page=1">
+      <a>Productos</a>
+      </Link>
     </NavStyles>
     }
         

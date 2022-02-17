@@ -6,6 +6,20 @@ type User {
   name: String
   password: PasswordState
   email: String
+  cart(
+    where: CartProductWhereInput! = {}
+    orderBy: [CartProductOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [CartProduct!]
+  cartCount(where: CartProductWhereInput! = {}): Int
+  products(
+    where: ProductWhereInput! = {}
+    orderBy: [ProductOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Product!]
+  productsCount(where: ProductWhereInput! = {}): Int
   passwordResetToken: PasswordState
   passwordResetIssuedAt: DateTime
   passwordResetRedeemedAt: DateTime
@@ -30,6 +44,8 @@ input UserWhereInput {
   id: IDFilter
   name: StringFilter
   email: StringFilter
+  cart: CartProductManyRelationFilter
+  products: ProductManyRelationFilter
   passwordResetToken: PasswordFilter
   passwordResetIssuedAt: DateTimeNullableFilter
   passwordResetRedeemedAt: DateTimeNullableFilter
@@ -80,6 +96,18 @@ input NestedStringFilter {
   not: NestedStringFilter
 }
 
+input CartProductManyRelationFilter {
+  every: CartProductWhereInput
+  some: CartProductWhereInput
+  none: CartProductWhereInput
+}
+
+input ProductManyRelationFilter {
+  every: ProductWhereInput
+  some: ProductWhereInput
+  none: ProductWhereInput
+}
+
 input PasswordFilter {
   isSet: Boolean!
 }
@@ -112,9 +140,25 @@ input UserUpdateInput {
   name: String
   password: String
   email: String
+  cart: CartProductRelateToManyForUpdateInput
+  products: ProductRelateToManyForUpdateInput
   passwordResetToken: String
   passwordResetIssuedAt: DateTime
   passwordResetRedeemedAt: DateTime
+}
+
+input CartProductRelateToManyForUpdateInput {
+  disconnect: [CartProductWhereUniqueInput!]
+  set: [CartProductWhereUniqueInput!]
+  create: [CartProductCreateInput!]
+  connect: [CartProductWhereUniqueInput!]
+}
+
+input ProductRelateToManyForUpdateInput {
+  disconnect: [ProductWhereUniqueInput!]
+  set: [ProductWhereUniqueInput!]
+  create: [ProductCreateInput!]
+  connect: [ProductWhereUniqueInput!]
 }
 
 input UserUpdateArgs {
@@ -126,9 +170,21 @@ input UserCreateInput {
   name: String
   password: String
   email: String
+  cart: CartProductRelateToManyForCreateInput
+  products: ProductRelateToManyForCreateInput
   passwordResetToken: String
   passwordResetIssuedAt: DateTime
   passwordResetRedeemedAt: DateTime
+}
+
+input CartProductRelateToManyForCreateInput {
+  create: [CartProductCreateInput!]
+  connect: [CartProductWhereUniqueInput!]
+}
+
+input ProductRelateToManyForCreateInput {
+  create: [ProductCreateInput!]
+  connect: [ProductWhereUniqueInput!]
 }
 
 type Product {
@@ -144,6 +200,7 @@ type Product {
     skip: Int! = 0
   ): [ProductImage!]
   photoCount(where: ProductImageWhereInput! = {}): Int
+  user: User
 }
 
 input ProductWhereUniqueInput {
@@ -160,6 +217,7 @@ input ProductWhereInput {
   description: StringFilter
   status: StringNullableFilter
   photo: ProductImageManyRelationFilter
+  user: UserWhereInput
 }
 
 input FloatFilter {
@@ -222,6 +280,7 @@ input ProductUpdateInput {
   description: String
   status: String
   photo: ProductImageRelateToManyForUpdateInput
+  user: UserRelateToOneForUpdateInput
 }
 
 input ProductImageRelateToManyForUpdateInput {
@@ -229,6 +288,12 @@ input ProductImageRelateToManyForUpdateInput {
   set: [ProductImageWhereUniqueInput!]
   create: [ProductImageCreateInput!]
   connect: [ProductImageWhereUniqueInput!]
+}
+
+input UserRelateToOneForUpdateInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
 }
 
 input ProductUpdateArgs {
@@ -242,11 +307,17 @@ input ProductCreateInput {
   description: String
   status: String
   photo: ProductImageRelateToManyForCreateInput
+  user: UserRelateToOneForCreateInput
 }
 
 input ProductImageRelateToManyForCreateInput {
   create: [ProductImageCreateInput!]
   connect: [ProductImageWhereUniqueInput!]
+}
+
+input UserRelateToOneForCreateInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 type ProductImage {
@@ -356,6 +427,60 @@ input ProductRelateToOneForCreateInput {
   connect: ProductWhereUniqueInput
 }
 
+type CartProduct {
+  id: ID!
+  units: Int
+  product: Product
+  user: User
+}
+
+input CartProductWhereUniqueInput {
+  id: ID
+}
+
+input CartProductWhereInput {
+  AND: [CartProductWhereInput!]
+  OR: [CartProductWhereInput!]
+  NOT: [CartProductWhereInput!]
+  id: IDFilter
+  units: IntFilter
+  product: ProductWhereInput
+  user: UserWhereInput
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntFilter
+}
+
+input CartProductOrderByInput {
+  id: OrderDirection
+  units: OrderDirection
+}
+
+input CartProductUpdateInput {
+  units: Int
+  product: ProductRelateToOneForUpdateInput
+  user: UserRelateToOneForUpdateInput
+}
+
+input CartProductUpdateArgs {
+  where: CartProductWhereUniqueInput!
+  data: CartProductUpdateInput!
+}
+
+input CartProductCreateInput {
+  units: Int
+  product: ProductRelateToOneForCreateInput
+  user: UserRelateToOneForCreateInput
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -389,6 +514,15 @@ type Mutation {
   updateProductImages(data: [ProductImageUpdateArgs!]!): [ProductImage]
   deleteProductImage(where: ProductImageWhereUniqueInput!): ProductImage
   deleteProductImages(where: [ProductImageWhereUniqueInput!]!): [ProductImage]
+  createCartProduct(data: CartProductCreateInput!): CartProduct
+  createCartProducts(data: [CartProductCreateInput!]!): [CartProduct]
+  updateCartProduct(
+    where: CartProductWhereUniqueInput!
+    data: CartProductUpdateInput!
+  ): CartProduct
+  updateCartProducts(data: [CartProductUpdateArgs!]!): [CartProduct]
+  deleteCartProduct(where: CartProductWhereUniqueInput!): CartProduct
+  deleteCartProducts(where: [CartProductWhereUniqueInput!]!): [CartProduct]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -460,6 +594,14 @@ type Query {
   ): [ProductImage!]
   productImage(where: ProductImageWhereUniqueInput!): ProductImage
   productImagesCount(where: ProductImageWhereInput! = {}): Int
+  cartProducts(
+    where: CartProductWhereInput! = {}
+    orderBy: [CartProductOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [CartProduct!]
+  cartProduct(where: CartProductWhereUniqueInput!): CartProduct
+  cartProductsCount(where: CartProductWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
   validateUserPasswordResetToken(

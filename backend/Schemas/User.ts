@@ -1,5 +1,5 @@
 import {list} from '@keystone-6/core'
-import {text,password,} from '@keystone-6/core/fields'
+import {text,password,relationship} from '@keystone-6/core/fields'
 
 
 const User = list({
@@ -20,6 +20,14 @@ const User = list({
         isRequired: true
       },
       isIndexed: 'unique'
+    }),
+    cart:relationship({
+      ref: 'CartProduct.user',
+      many: true
+    }),
+    products:relationship({
+      ref: 'Product.user',
+      many: true
     })
   }
 })
