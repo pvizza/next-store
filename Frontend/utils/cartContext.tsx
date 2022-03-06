@@ -1,6 +1,29 @@
-import {createContext} from "react"
+import {createContext, useState, ReactNode} from "react"
 
-const cartContext = createContext({}) 
-const cartProvider = cartContext.Provider
+interface Context {
+  toogleCart: () => void;
+  cart: boolean;
+  CartProvider: ReactNode;
+}
 
-export default cartContext
+
+export const CartContext = createContext({} as Context) 
+export const CreateProvider = CartContext.Provider
+
+interface Props {
+  children: React.ReactNode
+}
+
+export const CartProvider = ({children}:Props) => {
+  const [cart, setCart] = useState(true)
+  
+  const toogleCart = () => setCart(!cart)
+
+  return (
+    <CreateProvider value={{cart, toogleCart,CartProvider}}>
+      {children}
+    </CreateProvider> 
+  )
+
+}
+

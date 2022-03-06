@@ -3,6 +3,7 @@ import {Logo,HeaderContainer} from './style'
 import Link from 'next/link'
 import Router from 'next/router'
 import NProgress from 'nprogress'
+import Search from '../search/search'
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start()
@@ -27,7 +28,7 @@ const Header = () => {
         <Nav/>
         </div>
         <div className='sub-bar'>
-          <p>Search</p>
+          <Search/>
         </div>
       
      

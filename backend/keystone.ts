@@ -7,6 +7,7 @@ import User from './Schemas/User';
 import Product from './Schemas/Product';
 import ProductImage from './Schemas/ProductImage';
 import CartProduct from './Schemas/CartProduct';
+import { extendGraphqlSchema } from './customMutations';
 
 const DB_URL = process.env.DATABASE_URL || 'postgres://postgres:Divididos@127.0.0.1:5432/store_db_local';
 const FRONT_URL = process.env.FRONT_URL || 'http://localhost:3000';
@@ -34,6 +35,7 @@ export default withAuth(
       ProductImage,
       CartProduct
     },
+    extendGraphqlSchema,
     session,
   })
 );

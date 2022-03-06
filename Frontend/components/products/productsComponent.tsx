@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { Product } from "../../interfaces/Product";
+import AddCartComponent from "../addCart/addCartComponent";
 
 
 const ProductBox = styled.div`
@@ -38,6 +39,7 @@ const Products = ({ product }: Props) => {
       <p>{product.description}</p>
       <p>{product.price}</p>
       <button>Comprar</button>
+      <AddCartComponent id={product.id}/>
     </ProductBox>
   );
 };

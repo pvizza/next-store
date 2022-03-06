@@ -1,20 +1,24 @@
 import {ItemStyle} from './style'
 import Image from "next/image";
+import DeleteCart from '../deleteCart/deleteCart';
 
 interface Props {
   units: number
+  id: number
   item: {
     name:string
     price:string
+   
 
   }
 }
 
-const ItemComponent = ({units,item}:Props) => {
-console.log({units,item})
+const ItemComponent = ({units,item,id}:Props) => {
+console.log({units,item,id})
 const {name,price} = item
   return (
     <div>
+       
       <ItemStyle>
       {item.photo.map((photo:string,key:number) => {
       return <div key={key} className='imageProduct'>  
@@ -23,6 +27,7 @@ const {name,price} = item
       height={100}
       alt={"imagenes producto"}  
     /> 
+     
      </div>
     })}
     <div>
@@ -31,7 +36,7 @@ const {name,price} = item
       <span> X{units} unidades</span>
       </div>
       </ItemStyle>
-      
+      <DeleteCart id={id}/>
      
     </div>
   )
