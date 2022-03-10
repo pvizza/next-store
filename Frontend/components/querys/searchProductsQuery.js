@@ -13,6 +13,11 @@ export const SEARCH_PRODUCTS_QUERY = gql`
     }) {
       id
       name
+      photo {
+        image {
+          publicUrlTransformed
+        }
+      }
     }
   }
 `

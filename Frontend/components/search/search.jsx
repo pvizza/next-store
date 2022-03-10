@@ -1,41 +1,59 @@
-import {SearchStyle} from './style'
-import { autocomplete } from '@algolia/autocomplete-js';
+import {SearchStyle,ProductsContainer,ProductStyle} from './style'
 import { debounce } from "lodash"
-import { useRef, useState,useEffect, useMemo } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { SEARCH_PRODUCTS_QUERY } from '../querys/searchProductsQuery';
 import { useLazyQuery } from '@apollo/client';
 import { createAutocomplete } from '@algolia/autocomplete-core';
+import Image from 'next/image'
+import { useRouter } from 'next/router';
 
 
-interface Props {
-  name: string;
-  id: string;
-}
 
-const AutoCompleteProduct = ({ id,name }:Props) => {
+
+const AutoCompleteProduct = ({ id,name,photos }) => {
+  const router = useRouter()
+  const handleClick = () => {
+    router.push(`/products/${id}`)
+  }
+
   return (
-  <li>
-
+ 
+    <ProductStyle onClick={handleClick}>
+       
+      {photos.map((photo) =>{
+        return(
+         <Image
+         key={id} 
+         src={photo.image.publicUrlTransformed} 
+         alt={name}
+         width="50"
+         height="50" />
+        )
+         })}
     <p>{name}</p>
-  </li>
+    </ProductStyle>
+  
   )
 }
 
-const Search = (props:any) => {
+const Search = (props) => {
   const [autoCompleteState,setAutoCompleteState] = useState({
     isOpen: false,
     collections: [],
   })
-  const [findProduct] = useLazyQuery(
+  
+  const [findProduct,{data}] = useLazyQuery(
     SEARCH_PRODUCTS_QUERY,
     {
       fetchPolicy:'no-cache'
     }
   );
   const findItemsButChill = debounce(findProduct, 350);
+ 
+ console.log(data)
 
   const autocomplete = useMemo(() => createAutocomplete({
-    placeholder:'Busca un producto',
+    placeholder: 'Busca un producto',
     onStateChange:({state}) => setAutoCompleteState(state),
     getSources: () => [{
      sourceId: 'products',
@@ -46,7 +64,7 @@ const Search = (props:any) => {
         }})
   }],
     ...props
-  }),[props]);
+  }),[props,findProduct]);
   
     const inputRef = useRef(null)
     const panelRef = useRef(null)
@@ -54,12 +72,6 @@ const Search = (props:any) => {
     const inputProps = autocomplete.getInputProps({
       inputElement: inputRef.current,
     })
-  
-  interface Product {
-    id: string;
-    name: string;
-    
-  }
 
   return (
     <SearchStyle>
@@ -73,16 +85,16 @@ const Search = (props:any) => {
       
             return (
               <div key={index}> 
-              {items.map((item:Item,index:number) => {
+              {items.map((item,index) => {
                 const {data} = item
                 return (
-                  <section key={`section-${index}`}>
-                  <ul {...autocomplete.getListProps()}>
+                  <ProductsContainer key={`section-${index}`}>
+                  <div {...autocomplete.getListProps()}>
                   {
-                    data.products.map((product:Product) => <AutoCompleteProduct key={product.id} {...product}/>)
+                    data.products.map((product) => <AutoCompleteProduct  key={product.id} id={product.id} name={product.name} photos={product.photo} />)
                   }
-                </ul>
-                </section>
+                </div>
+                </ProductsContainer>
                 )
               })}
               </div>
