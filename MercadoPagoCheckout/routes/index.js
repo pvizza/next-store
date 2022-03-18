@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const require = require('../controller/PaymentController');
+const PaymentController = require('../controller/PaymentController');
 
 
 router.post('/payment/new', function(req, res, next) {
+  console.log('####### LLego a la ruta')
+
   PaymentController.getMercadoPagoLink(req, res) 
 });
 

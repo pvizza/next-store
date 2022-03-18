@@ -1,8 +1,14 @@
+const PaymentService = require('../services/PaymentService')
+
+
+
 exports.getMercadoPagoLink = async (req,res) => {
+  console.log('####### LLego al controller')
 const {name,price,unit,img} = req.body
+console.log('##########',req.body)
   try {
-  const checkout =  await paymentService.createPaymentMercadoPago(name,price,unit,img) 
-      return res.redirect(checkout.init_point); 
+  const checkout =  await PaymentService.createPaymentMercadoPago(name,price,unit,img) 
+      return console.log(res.status.json(checkout))
     
   
   }catch(error) {
