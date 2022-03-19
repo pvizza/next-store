@@ -18,6 +18,7 @@ model User {
   email                   String        @unique @default("")
   cart                    CartProduct[] @relation("CartProduct_user")
   products                Product[]     @relation("Product_user")
+  orders                  Order[]       @relation("Order_user")
   passwordResetToken      String?
   passwordResetIssuedAt   DateTime?
   passwordResetRedeemedAt DateTime?
@@ -38,11 +39,12 @@ model Product {
 }
 
 model ProductImage {
-  id        String   @id @default(cuid())
-  image     Json?
-  title     String   @default("")
-  product   Product? @relation("ProductImage_product", fields: [productId], references: [id])
-  productId String?  @map("product")
+  id                   String      @id @default(cuid())
+  image                Json?
+  title                String      @default("")
+  product              Product?    @relation("ProductImage_product", fields: [productId], references: [id])
+  productId            String?     @map("product")
+  from_OrderCart_photo OrderCart[] @relation("OrderCart_photo")
 
   @@index([productId])
 }
@@ -57,4 +59,27 @@ model CartProduct {
 
   @@index([productId])
   @@index([userId])
+}
+
+model Order {
+  id     String      @id @default(cuid())
+  item   OrderCart[] @relation("OrderCart_order")
+  user   User?       @relation("Order_user", fields: [userId], references: [id])
+  userId String?     @map("user")
+  total  Int?
+
+  @@index([userId])
+}
+
+model OrderCart {
+  id          String         @id @default(cuid())
+  name        String         @default("")
+  price       Float
+  description String         @default("")
+  photo       ProductImage[] @relation("OrderCart_photo")
+  units       Int?
+  order       Order?         @relation("OrderCart_order", fields: [orderId], references: [id])
+  orderId     String?        @map("order")
+
+  @@index([orderId])
 }

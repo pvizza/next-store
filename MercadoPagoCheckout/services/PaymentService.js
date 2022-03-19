@@ -1,6 +1,9 @@
 const axios = require("axios"); 
 
-  const tokensMercadoPago = {
+class PaymentService {
+  constructor() {
+
+    this.tokensMercadoPago = {
       prod: {},
       test: {
         access_token:
@@ -10,15 +13,20 @@ const axios = require("axios");
     }; 
 // declaramos de la siguiente manera el token
 // para que sea más fácil cambiarlo dependiendo del ambiente
-
-   const mercadoPagoUrl = "https://api.mercadopago.com/checkout"; 
+  this.mercadoPagoUrl = "https://api.mercadopago.com/checkout"; 
  // declaramos la url en el constructor para poder accederla a lo largo de toda la class
 
 
- exports.createPaymentMercadoPago = async  (name, price, unit, img) => {  
+  }
+
+
+  
+
+
+ async createPaymentMercadoPago (name, price, unit, img) {  
     console.log('########## paso por aqui')
 
-    const url = `${mercadoPagoUrl}/preferences?access_token=${tokensMercadoPago.test.access_token}`; 
+    const url = `${this.mercadoPagoUrl}/preferences?access_token=${this.tokensMercadoPago.test.access_token}`; 
 
   
 
@@ -101,3 +109,6 @@ const axios = require("axios");
   }
 
 
+}
+
+module.exports = PaymentService;

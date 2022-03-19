@@ -28,6 +28,10 @@ const User = list({
     products:relationship({
       ref: 'Product.user',
       many: true
+    }),
+    orders:relationship({
+      ref: 'Order.user',
+      many:true
     })
   }
 })

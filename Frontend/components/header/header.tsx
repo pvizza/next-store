@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import Search from '../search/search'
+import Checkout from '../checkout/checkout'
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start()
@@ -26,9 +27,10 @@ const Header = () => {
           </Link>
         </Logo>
         <Nav/>
+        <Checkout/>
         </div>
         <div className='sub-bar'>
-          <Search/>
+          {/* <Search/> */}
         </div>
       
      

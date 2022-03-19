@@ -1,21 +1,24 @@
-const PaymentService = require('../services/PaymentService')
+class PaymentController {
+  constructor(paymentService) {
+    this.paymentService = paymentService; 
+  }
 
 
 
-exports.getMercadoPagoLink = async (req,res) => {
+async getMercadoPagoLink(req,res)  {
   console.log('####### LLego al controller')
 const {name,price,unit,img} = req.body
 console.log('##########',req.body)
   try {
-  const checkout =  await PaymentService.createPaymentMercadoPago(name,price,unit,img) 
-      return console.log(res.status.json(checkout))
+  const checkout = await  this.paymentService.createPaymentMercadoPago(name,price,unit,img) 
+  return console.log(checkout)
     
   
   }catch(error) {
     console.log(error)
   }
-
-  exports.webhook = async (req, res) => { 
+    } 
+      webhook(req, res)  { 
     if (req.method === "POST") { 
       let body = ""; 
       req.on("data", chunk => {  
@@ -30,4 +33,7 @@ console.log('##########',req.body)
   }
 
 
+
+
 }
+module.exports = PaymentController;
