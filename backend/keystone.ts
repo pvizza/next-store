@@ -11,7 +11,7 @@ import { extendGraphqlSchema } from './customMutations';
 import Order from './Schemas/Order';
 import OrderCart from './Schemas/OrderCart';
 
-const DB_URL = process.env.DATABASE_URL || 'postgres://postgres:Divididos@127.0.0.1:5432/store_db_local';
+const DB_URL = process.env.DATABASE_URL 
 const FRONT_URL = process.env.FRONT_URL || 'http://localhost:3000';
 
 
@@ -24,7 +24,7 @@ export default withAuth(
     },
     db: {
       provider: 'postgresql',
-      url: process.env.DATABASE_URL,
+      url:process.env.DATABASE_URL,
     },
     
     

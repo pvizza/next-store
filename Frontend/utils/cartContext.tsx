@@ -15,9 +15,11 @@ interface Props {
 }
 
 export const CartProvider = ({children}:Props) => {
-  const [cart, setCart] = useState(true)
+  const [cart, setCart] = useState(false)
   
   const toogleCart = () => setCart(!cart)
+
+  const closeCart = () => setCart(!cart)
 
   return (
     <CreateProvider value={{cart, toogleCart,CartProvider}}>

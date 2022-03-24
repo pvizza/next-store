@@ -27,7 +27,6 @@ const Header = () => {
           </Link>
         </Logo>
         <Nav/>
-        <Checkout/>
         </div>
         <div className='sub-bar'>
           {/* <Search/> */}

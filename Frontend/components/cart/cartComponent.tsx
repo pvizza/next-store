@@ -4,6 +4,7 @@ import ItemComponent from './itemComponent'
 import {CartStyle} from './style'
 import { useContext } from 'react'
 import { CartContext } from '../../utils/cartContext'
+import Checkout from '../checkout/checkout'
 
 
 
@@ -25,7 +26,7 @@ const CartComponent = () => {
       </ul>
       <footer>
         <h3>Total: ${calcPrice(cartUser?.cart)}</h3>
-      
+        <Checkout products={cartUser}/>
       </footer>
       </CartStyle>
       </div>
