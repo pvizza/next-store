@@ -1,11 +1,14 @@
 import { useRouter } from "next/router"
+import OrderComponent from "../../components/order/orderComponent"
 
 const Order = () => {
   const router = useRouter()
   const { id } = router.query
  
   return (
-    <div>Order {id}</div>
+    <div>
+    <OrderComponent id={id}/>
+       </div>
   )
 }
 

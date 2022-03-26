@@ -23,8 +23,8 @@ export default withAuth(
       cors: { origin: [FRONT_URL], credentials: true },
     },
     db: {
-      provider: 'postgresql',
-      url:process.env.DATABASE_URL,
+      provider: 'sqlite',
+      url:'file:./keystone.db',
     },
     
     
