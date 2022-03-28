@@ -3,11 +3,12 @@ import OrderComponent from "../../components/order/orderComponent"
 
 const Order = () => {
   const router = useRouter()
-  const { id } = router.query
+  const { id,url } = router.query
+  console.log(router.query)
  
   return (
     <div>
-    <OrderComponent id={id}/>
+    <OrderComponent id={id} url={url}/>
        </div>
   )
 }

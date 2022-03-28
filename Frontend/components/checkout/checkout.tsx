@@ -62,7 +62,10 @@ const Checkout = ({products}:any) => {
     const response = await Axios.post(url, body, headersGetRequest)
     router.push({
     pathname:  `/order/${data.checkout.id}`,
-    query: {id: data.checkout.id}
+    query: {
+      id: data.checkout.id,
+      url: response.data.init_point
+    }
     })
     cartContext.toogleCart()
     return response
