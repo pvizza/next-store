@@ -9,7 +9,7 @@ const Order = () => {
   return (
     <div>
     <OrderComponent id={id} url={url}/>
-       </div>
+    </div>
   )
 }
 

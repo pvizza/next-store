@@ -1,7 +1,9 @@
 import { createAuth } from '@keystone-6/auth';
 import { statelessSessions } from '@keystone-6/core/session';
 
+
 let sessionSecret = process.env.COCKIE_SECRET;
+
 
 // Here is a best practice! It's fine to not have provided a session secret in dev,
 // however it should always be there in production.
@@ -37,11 +39,6 @@ const { withAuth } = createAuth({
 
 });
 
-// export default withAuth(
-//   config({
-
-//   })
-// )
 
 // This defines how long people will remain logged in for.
 // This will get refreshed when they log back in.
@@ -51,6 +48,8 @@ let sessionMaxAge = 60 * 60 * 24 * 30;
 const session = statelessSessions({
   maxAge: sessionMaxAge,
   secret: sessionSecret!,
+  
+ 
 });
 
 

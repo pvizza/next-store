@@ -1,6 +1,7 @@
 import { config, list } from '@keystone-6/core';
 import { cloudinaryImage } from '@keystone-6/cloudinary';
 import {relationship, text} from '@keystone-6/core/fields'
+import { isAdmin } from '../access';
 
 const cloudinary= {
   cloudName: process.env.CLOUD_NAME,
@@ -10,6 +11,18 @@ const cloudinary= {
 }
 
 const ProductImage = list({
+access: {
+  operation:{
+    create:isAdmin
+  },
+  filter: {
+    query:() => true,
+    update:isAdmin,
+    delete:isAdmin,
+  }
+
+},
+
   fields: {
     image: cloudinaryImage({
       cloudinary,

@@ -1,6 +1,10 @@
 :root {
   --color-primary: #0000ff;
   --color-border:#d3d3d3;
+  --black-border: rgb(78, 78, 78);
+  --shadow: 0 12px 24px 0 rgba(0,0,0,0.09);
+  --checkout-background: #d3d3d4;
+
 }
 
 html {
@@ -12,6 +16,7 @@ body {
   margin: 0;
   font-size: 1.6em;
   line-height: 2;
+  background-color: rgb(202, 202, 202);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }

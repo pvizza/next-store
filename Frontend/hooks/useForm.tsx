@@ -18,7 +18,7 @@ const useForm = (init:Init) => {
   setValues(init)
  },[])
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     let {value,type,name,files} = e.target
     
 

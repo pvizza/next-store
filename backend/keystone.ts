@@ -10,13 +10,17 @@ import CartProduct from './Schemas/CartProduct';
 import { extendGraphqlSchema } from './customMutations';
 import Order from './Schemas/Order';
 import OrderCart from './Schemas/OrderCart';
+import { Role } from './Schemas/Role';
+import {admin} from './utils/admin'
+
 
 const DB_URL = process.env.DATABASE_URL 
 const FRONT_URL = process.env.FRONT_URL || 'http://localhost:3000';
 
 
+
+
 export default withAuth(
-  // Using the config function helps typescript guide you to the available options.
   config({
     server:{
       port: 4000,
@@ -28,8 +32,9 @@ export default withAuth(
     },
     
     
+    
     ui: {
-      isAccessAllowed: ({session}) => !!session?.data,
+      isAccessAllowed: admin,
     },
     lists: {
       User,
@@ -38,8 +43,10 @@ export default withAuth(
       CartProduct,
       Order,
       OrderCart,
+      Role
     },
     extendGraphqlSchema,
     session,
+    
   })
 );

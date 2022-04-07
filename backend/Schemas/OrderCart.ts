@@ -1,7 +1,23 @@
+import { isSignedIn } from './../access';
 import { list } from "@keystone-6/core";
 import { float, integer, relationship, text } from "@keystone-6/core/fields";
+import { isAdmin,rules } from "../access";
 
 const OrderCart = list({
+
+  access: {
+    operation: {
+      create:isSignedIn,
+      
+     
+    },
+    filter: {
+      query:rules.canManageOrderItems,
+      update:isAdmin,
+      delete:isAdmin,
+    }
+  },
+
   fields:{
     name:text({
       validation: 
