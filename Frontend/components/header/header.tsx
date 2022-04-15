@@ -1,10 +1,11 @@
 import Nav from '../nav/nav'
-import {Logo,HeaderContainer} from './style'
+import {Logo,HeaderContainer, HeaderMobile} from './style'
 import Link from 'next/link'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import Search from '../search/search'
-import Checkout from '../checkout/checkout'
+import { useState } from 'react'
+
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start()
@@ -16,26 +17,40 @@ Router.events.on('routeChangeComplete', () => {
 })
 
 const Header = () => {
+  const [menu,setMenu] = useState<boolean>(false)
+  console.log(menu)
   return (
-  
-    <HeaderContainer>
-    <div className='bar'>
+    <>
+    {/* <Logo>
+    Store
+    </Logo> */}
+    <Nav/>
+
+      </>
+
+    // <HeaderContainer open={menu}>
+    // <div className='bar'>
     
-        <Logo>
-          <Link href="/">
-        STORE 
-          </Link>
-        </Logo>
-        <Nav/>
-        </div>
-        <div className='sub-bar'>
-          {/* <Search/> */}
-        </div>
+    //     <Logo>
+    //       <Link href="/">STORE</Link>
+    //     </Logo>
+    //     <Nav/>
+    //     </div>
+
+    //     <HeaderMobile>
+    //     <span onClick={() => setMenu(!menu) }>🍔</span>
+    //     <Nav/>
+    //   </HeaderMobile>
+
+
+
+    //     <div className='sub-bar'>
+        
+    //     </div>
       
-     
       
-     </HeaderContainer>
-     
+    //  </HeaderContainer>
+       
   )
 }
 

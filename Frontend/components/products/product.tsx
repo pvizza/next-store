@@ -33,7 +33,7 @@ const Product = ({query}:Props) => {
      <Link href={`/updateProduct/${product.id}`}><a>Editar</a></Link>
      <DeleteProduct id={query.id}> Borrar Producto </DeleteProduct>
 
-     {product.photo.map((photo:string,key:number) => {
+     {product.photo.map((photo:any,key:number) => {
       return <div key={key} className='imageProduct'>  
       <Image src={photo.image.publicUrlTransformed}
       width={300}

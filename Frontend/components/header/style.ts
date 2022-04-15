@@ -1,5 +1,10 @@
 import styled from 'styled-components';
+import {devices} from '../../styles/device';
 
+
+type Props = {
+  open?:boolean
+}
 
 export const Logo = styled.h1`
 font-size: 4rem;
@@ -16,14 +21,19 @@ a {
     
 }
 
-@media (max-width: 1300px) {
+@media ${devices.desktop} {
     margin: 0;
     text-align: center;
 }
 
 `
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header<Props>`
+
+     height: ${props => (props.open ? "100vh" : "0vh")}; 
+     transition:${props => (props.open ? "height 0.5s ease-in-out" : "height 0.5s ease-in-out")};
+     background-color: #586dac; 
+
     .bar {
     border-bottom: 5px solid var(--black, black);
     display: grid;
@@ -31,9 +41,29 @@ export const HeaderContainer = styled.header`
     justify-content: flex-start;
     align-items: stretch;
   }
- 
-  .sub-bar {
+   
+    .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
     border-bottom: 1px solid var(--black, black);
-  }`
+  }  
+
+  @media ${devices.mobileSmall} {
+   .bar {
+     display:none;
+   };
+    
+  }
+ 
+ `
+
+  export const HeaderMobile = styled.div`
+    
+    display:none;
+
+    @media ${devices.mobileSmall} {
+      display:grid;
+      justify-content:center ;
+    }
+  
+  `

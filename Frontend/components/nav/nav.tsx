@@ -6,13 +6,16 @@ import { useState,useContext } from 'react'
 import CartComponent from '../cart/cartComponent'
 import { CartContext } from '../../utils/cartContext'
 import CartCount from '../cart/cartCount'
+import {NavContainer, Navbar, Menu,Item, MenuMobile}  from './styles'
+
 
 
 
 const Nav = () => {
   const user = useUser()
   const cartContext = useContext(CartContext)
-  const [isAdmin,setIsAdmin] = useState<boolean>(true)
+  const [isAdmin,setIsAdmin] = useState<boolean>(false)
+  const [menu,setMenu] = useState<boolean>(false)
   return (
     <>
     <CartComponent/>
@@ -48,22 +51,39 @@ const Nav = () => {
         </NavStyles>
         <NavStyles>
         <SignOut />
+       
           </NavStyles></>
     
     }
     {(!user && !isAdmin) && 
-    <NavStyles>
-          
-    <Link href="/acount">
-   <a> Crea Tu Cuenta </a>
-    </Link>
-    <Link href="/signIn">
-    <a> Iniciar Sesión </a>
-    </Link>
-    <Link href="/products?page=1">
-      <a>Productos</a>
-      </Link>
-    </NavStyles>
+    // <NavStyles>
+    <NavContainer>
+     {/* <div className= "products-nav"> */}
+     <Navbar>
+     <MenuMobile onClick={() => setMenu(!menu)}>🍔</MenuMobile>
+     <Menu open={menu}>
+     <Item>
+    <Link href="/products?page=1"><a>Productos</a></Link>
+    </Item>
+    <Item> 
+    <Link href="/products?page=1"><a>Categorias</a></Link>
+    </Item>
+    <Item>
+      <button onClick={cartContext.toogleCart}> Carrito 
+      <CartCount count={user?.cart.reduce((sum:number,cartItem:any) => sum + cartItem.units,0)}/>
+      </button>
+      </Item>
+      {/* </div*/}
+      <Item>  
+    <Link href="/acount"><a> Crea Tu Cuenta </a></Link>
+      </Item>
+      <Item>    
+    <Link href="/signIn"><a> Iniciar Sesión </a></Link>
+    </Item>  
+    </Menu>
+    </Navbar>
+    </NavContainer>   
+    // </NavStyles>
     }
         
        
