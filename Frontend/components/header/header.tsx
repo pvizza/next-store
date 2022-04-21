@@ -24,7 +24,9 @@ const Header = () => {
     {/* <Logo>
     Store
     </Logo> */}
+    
     <Nav/>
+    
 
       </>
 

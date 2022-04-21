@@ -1,24 +1,13 @@
 import ProductsComponent from '../../components/products/productsComponent'
 import { useQuery } from "@apollo/client";
 import {Product} from '../../interfaces/Product'
-import styled from 'styled-components';
 import PaginationProduct from '../../components/PaginationProduct/paginationProduct';
 import { PaginationContainer } from '../../components/PaginationProduct/style';
 import {useRouter} from 'next/router';
 import {ALL_PRODUCTS_QUERY} from '../../components/querys/allProductsQuery';
 import {PRODUCT_PAGE} from '../../config';
+import { ProductsStyles } from './style';
 
-
-// TODO: import querys and styles
-
-const ProductsStyles = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 60px;
-  justify-content: space-around;
-  margin-top: 50px;
-  
-`;
 
 
 const ProductsPage = () => {

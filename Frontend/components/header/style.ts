@@ -24,6 +24,28 @@ a {
 @media ${devices.desktop} {
     margin: 0;
     text-align: center;
+    font-size:3.5rem;
+    padding-left:0 ;
+}
+
+@media ${devices.tablet} {
+  padding-left:2rem;
+
+  a{
+    padding:initial;
+  }
+}
+
+@media ${devices.mobile} {
+  font-size: 3rem;
+  padding:0;
+  
+
+  a {
+    background-color: #586dac;
+
+  };
+  
 }
 
 `

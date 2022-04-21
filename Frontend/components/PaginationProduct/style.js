@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../../styles/device';
 
 export const PaginationStyle = styled.div`
   * {
@@ -24,6 +25,23 @@ export const PaginationStyle = styled.div`
     color: grey;
     pointer-events: none;
   }
+
+  @media ${devices.mobileSmall} {
+       * {
+         padding: initial;
+         width:75%;
+       }
+
+       a {
+         font-size: 1rem;
+
+       }
+       span {
+         font-size:1.2rem
+       }
+       
+
+    }
   
 `
 export const PaginationContainer = styled.div`

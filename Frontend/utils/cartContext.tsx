@@ -2,6 +2,8 @@ import {createContext, useState, ReactNode} from "react"
 
 interface Context {
   toogleCart: () => void;
+  closeCart: () => void;
+  openCart: () => void;
   cart: boolean;
   CartProvider: ReactNode;
 }
@@ -19,10 +21,12 @@ export const CartProvider = ({children}:Props) => {
   
   const toogleCart = () => setCart(!cart)
 
-  const closeCart = () => setCart(!cart)
+  const closeCart = () => setCart(false)
+
+  const openCart = () => setCart(true)
 
   return (
-    <CreateProvider value={{cart, toogleCart,CartProvider}}>
+    <CreateProvider value={{cart, toogleCart,CartProvider,closeCart,openCart}}>
       {children}
     </CreateProvider> 
   )

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../../styles/device';
 
 export const CartStyle = styled.div`
   padding: 20px;
@@ -18,8 +19,6 @@ export const CartStyle = styled.div`
   grid-template-rows: auto 1fr auto;
   ${({isOpen}) => isOpen && `transform: translateX(0);`};
 
-
-  
   h1 {
     margin:0;
     border-bottom: 5px solid;
@@ -37,6 +36,27 @@ export const CartStyle = styled.div`
     margin-top: 2rem;
     padding-top: 2rem;
   }
+  
+  
+  @media ${devices.mobile} {
+    width:100%;
+    padding: 2rem 2rem;
+    min-width:0;
+    h1 {
+      border-bottom:1px solid;
+      margin:0;
+    }
+    footer {
+      border-top:1px solid;
+    
+    }
+    h3 {
+      margin:0
+    }
+
+  }
+  
+  
   
 `;
 

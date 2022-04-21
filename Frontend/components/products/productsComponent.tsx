@@ -1,14 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
 import { Product } from "../../interfaces/Product";
 import AddCartComponent from "../addCart/addCartComponent";
-
-
-const ProductBox = styled.div`
-  border: 1px solid #eaeaea;
-  margin: 0px;
-`;
+import {ProductBox} from './style'
 interface Props {
   product: Product;
 }
@@ -20,7 +14,7 @@ const Products = ({ product }: Props) => {
     <ProductBox>
       {product.photo.map((photo:string,key:number) => {
         return (
-         <div key={key}>
+         <div className="img_product" key={key}>
               <Link
                 href={`/products/${product.id}?id=${product.id}&name=${product.name}`}>
                 <a>
@@ -35,9 +29,11 @@ const Products = ({ product }: Props) => {
               </div>
         );
       })}
+      <div>
       <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <p>{product.price}</p>
+      <p className="product_description">{product.description}</p>
+      <p className="product_price">${product.price}</p>
+      </div>
       <button>Comprar</button>
       <AddCartComponent id={product.id}/>
     </ProductBox>
