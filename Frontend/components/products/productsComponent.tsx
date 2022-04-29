@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Product } from "../../interfaces/Product";
 import AddCartComponent from "../addCart/addCartComponent";
 import {ProductBox} from './style'
+import {FaCartPlus} from '@react-icons/all-files/fa/FaCartPlus'
 interface Props {
   product: Product;
 }
@@ -29,10 +30,16 @@ const Products = ({ product }: Props) => {
               </div>
         );
       })}
-      <div>
+      <div className="title_product">
       <h1>{product.name}</h1>
-      <p className="product_description">{product.description}</p>
-      <p className="product_price">${product.price}</p>
+      {/* <p className="product_description">{product.description}</p> */}
+      <div className="description_product">
+      <span className="product_price">${product.price}</span>
+      <div className="icon_add_product">
+      <AddCartComponent id={product.id}/>
+     {/* <FaCartPlus style={{color:"#fff",paddingTop:"4px",fontSize:"1.8rem"}}/> */}
+      </div>
+      </div>
       </div>
       <button>Comprar</button>
       <AddCartComponent id={product.id}/>

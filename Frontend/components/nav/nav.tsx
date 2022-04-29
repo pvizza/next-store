@@ -43,7 +43,9 @@ const Nav = () => {
         <Logo>
           <Link href="/">STORE</Link>
         </Logo>
-        <MenuCart onClick={openCart}><FaCartPlus style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/></MenuCart>
+        <MenuCart onClick={openCart}><FaCartPlus style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/>
+        <CartCount count={user?.cart.reduce((sum:number,cartItem:any) => sum + cartItem.units,0)}/>
+        </MenuCart>
         <Menu open={menu}>
         <Item>
         <Link href="/products?page=1"><a onClick={closeMenu}>Productos</a></Link>

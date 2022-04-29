@@ -1,6 +1,8 @@
 import { useMutation } from "@apollo/client"
+import { FaCartPlus } from "@react-icons/all-files/fa/FaCartPlus"
 import { ADD_CART_MUTATION } from "../querys/addCartMutation"
 import { USER_QUERY } from "../querys/userQuery"
+import { AddCartButton } from "./style"
 
 interface Props {
   id: number
@@ -13,9 +15,12 @@ const AddCartComponent = ({id}:Props) => {
     variables: {id},
     refetchQueries: [{query: USER_QUERY }]
   })
-  console.log(data)
+  const addToCart = () => addCart()
+  
   return (
-    <button disabled={loading} onClick={addCart}>Agregar al carrito🛒</button>
+    <AddCartButton disabled={loading} onClick={addToCart}>
+      <FaCartPlus style={{color:"#fff",paddingTop:"4px",fontSize:"1.8rem"}}/>
+    </AddCartButton>
   )
 }
 

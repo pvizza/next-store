@@ -26,7 +26,7 @@ export const PaginationStyle = styled.div`
     pointer-events: none;
   }
 
-  @media ${devices.mobileSmall} {
+  @media ${devices.mobile} {
        * {
          padding: initial;
          width:75%;
