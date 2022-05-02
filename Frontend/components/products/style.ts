@@ -66,6 +66,10 @@ export const ProductBox = styled.div`
 
     }
 
+    .buy_product {
+      display: none;
+    }
+
       }
   
 

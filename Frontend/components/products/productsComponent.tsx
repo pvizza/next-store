@@ -4,9 +4,11 @@ import { Product } from "../../interfaces/Product";
 import AddCartComponent from "../addCart/addCartComponent";
 import {ProductBox} from './style'
 import {FaCartPlus} from '@react-icons/all-files/fa/FaCartPlus'
+import BuyComponent from "../buyButton/buyComponent";
 interface Props {
   product: Product;
 }
+
 
 //! The main product page should only display one image.
 
@@ -41,8 +43,8 @@ const Products = ({ product }: Props) => {
       </div>
       </div>
       </div>
-      <button>Comprar</button>
-      <AddCartComponent id={product.id}/>
+      <BuyComponent/>
+      
     </ProductBox>
   );
 };
