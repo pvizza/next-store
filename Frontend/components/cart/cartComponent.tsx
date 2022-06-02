@@ -11,23 +11,25 @@ import Checkout from '../checkout/checkout'
 const CartComponent = () => {
   const cartUser = useUser()
   const cartContext = useContext(CartContext)
-  
-  // TODO: 1 - IMPROVE DESIGN FOR CLOSE CART
-  // TODO: 2 - IMPROVE DESIGN FOR CART ITEMS
 
   return (
-    <div><CartStyle isOpen={cartContext.cart}>
+    <div>
+      <CartStyle isOpen={cartContext.cart}>
       <header>
         <h1>Tu Carrito</h1>
-        <button onClick={cartContext.toogleCart}>&times;</button>
+        
       </header>
       <ul>
       {cartUser?.cart.map((item:any) => <ItemComponent key={item.id} id={item.id} item={item.product} units={item.units}/>  )}
       </ul>
       <footer>
+        {/* <div> */}
         <h3>Total: ${calcPrice(cartUser?.cart)}</h3>
+        {/* <p style={{margin:'0'}}>con envio $300</p> */}
+        {/* </div> */}
         <Checkout products={cartUser}/>
       </footer>
+      
       </CartStyle>
       </div>
   )

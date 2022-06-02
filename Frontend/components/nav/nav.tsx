@@ -10,6 +10,7 @@ import {NavContainer, Navbar, Menu,Item, MenuMobile, MenuCart}  from './styles'
 import { Logo } from '../header/style'
 import {FaCartPlus} from '@react-icons/all-files/fa/FaCartPlus'
 import {GiHamburgerMenu} from '@react-icons/all-files/gi/GiHamburgerMenu'
+import {FaRegWindowClose} from  '@react-icons/all-files/fa/FaRegWindowClose'
 
 
 
@@ -43,7 +44,7 @@ const Nav = () => {
         <Logo>
           <Link href="/">STORE</Link>
         </Logo>
-        <MenuCart onClick={openCart}><FaCartPlus style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/>
+        <MenuCart onClick={openCart}>{ !cartContext.cart ? <FaCartPlus style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/> : <FaRegWindowClose style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/>}
         <CartCount count={user?.cart.reduce((sum:number,cartItem:any) => sum + cartItem.units,0)}/>
         </MenuCart>
         <Menu open={menu}>
@@ -96,7 +97,8 @@ const Nav = () => {
      <Logo>
        <Link href="/">STORE</Link>
      </Logo>
-     <MenuCart onClick={openCart}><FaCartPlus style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/></MenuCart>
+     <MenuCart onClick={openCart}>{ !cartContext.cart ? <FaCartPlus style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/> : <FaRegWindowClose style={{fontSize:"2.8rem",color:"#fff",paddingRight:"5px"}}/>}
+     </MenuCart>
      <Menu open={menu}>
      <Item>
     <Link href="/products?page=1"><a onClick={closeMenu}>Productos</a></Link>

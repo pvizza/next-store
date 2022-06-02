@@ -33,6 +33,7 @@ justify-content:space-between;
 @media ${devices.tablet} {
 
   flex-wrap:initial ;
+  align-items: center;
 }
 
 `
@@ -55,7 +56,8 @@ margin:0;
   left: ${props => (props.open ? 0 : "-100%")};
   flex-direction:column ;
   transition:0.2s all;
-  background-color: #586dac
+  background-color: #586dac;
+  top:50%
 }
 
 `

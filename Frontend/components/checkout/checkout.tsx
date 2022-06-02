@@ -1,11 +1,10 @@
 import { useMutation } from "@apollo/client";
 import {CHECKOUT_MUTATION} from "../querys/checkoutMutation"
-import Axios from "axios";
 import { USER_QUERY } from "../querys/userQuery";
 import { useRouter } from "next/router";
-import calcPrice from '../../utils/calcPrice'
 import { CartContext } from "../../utils/cartContext";
 import {useContext} from 'react'
+import { CheckoutButton } from "../styles components/checkoutButton";
 
 
 const Checkout = ({products}:any) => {
@@ -25,7 +24,8 @@ const Checkout = ({products}:any) => {
      },
      
    })
-    await  funct()
+    await  apiPostPayment()
+    await cartContext.closeCart()
   //  await apiPostPayment()
   }
 
@@ -69,11 +69,11 @@ const Checkout = ({products}:any) => {
     
   // }
 
-  const funct = () => {
+  const apiPostPayment = () => {
     router.push({ pathname:`/order/${data?.checkout.id}`})
   }
   return (
-    <button  onClick={handleClick}>Checkout</button>
+    <CheckoutButton  onClick={handleClick}>Checkout</CheckoutButton>
   )
 }
 

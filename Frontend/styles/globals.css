@@ -28,6 +28,11 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color:transparent; 
+  border:none
+}
+
  /* Chrnome */
  input::-webkit-outer-spin-button,
  input::-webkit-inner-spin-button {
