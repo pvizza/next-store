@@ -5,17 +5,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint:fix": "eslint --fix --ext .js,.tsx ."
+    "lint:fix": "eslint --fix --ext .js,.tsx .",
+    "postinstall": "husky install"
   },
-
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-
   "lint-staged": {
-    "*.{ts,tsx}": ["eslint --fix --ext .js,.tsx ."]
+    "*.{ts,tsx}": [
+      "eslint --fix --ext .js,.tsx ."
+    ]
   },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.5.3",
