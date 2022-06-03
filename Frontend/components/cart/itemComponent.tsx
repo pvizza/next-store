@@ -25,7 +25,7 @@ const ItemComponent = ({ units, item, id }:Props) => {
       <Image src={photo.image.publicUrlTransformed}
       width={100}
       height={100}
-      alt={'imagenes producto'}
+      alt={"imagenes producto"}
     />
 
      </div>;
