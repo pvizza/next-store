@@ -15,7 +15,7 @@
   },
 
   "lint-staged": {
-    "*.{ts,tsx}": ["eslint --fix"]
+    "*.{ts,tsx}": ["lint:fix"]
   },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.5.3",

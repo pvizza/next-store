@@ -1,5 +1,5 @@
 import { ItemStyle } from './style';
-import Image from 'next/image';
+import Image from "next/image"
 import DeleteCart from "../deleteCart/deleteCart";
 
 interface Props {
