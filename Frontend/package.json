@@ -5,11 +5,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint:fix": "eslint --fix --ext .js,.tsx .",
-    "postinstall": "husky install",
-    "pre-commit": "lint-staged"
-
+    "lint:fix": "eslint --fix --ext .js,.tsx ."
   },
+
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --fix --ext .js,.tsx ."
@@ -50,7 +54,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
-    "husky": "^8.0.1",
+    "husky": "4.3.8",
     "lint-staged": "^13.0.0",
     "prettier": "^2.6.2",
     "typescript": "4.4.4"
