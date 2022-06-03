@@ -7,6 +7,9 @@
     "start": "next start",
     "lint:fix": "eslint --fix --ext .js,.tsx ."
   },
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix"]
+  },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.5.3",
     "@algolia/autocomplete-js": "^1.5.3",
