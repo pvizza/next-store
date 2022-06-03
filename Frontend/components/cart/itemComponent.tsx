@@ -17,7 +17,7 @@ const ItemComponent = ({ units, item, id }:Props) => {
   console.log({ units, item, id });
   const { name, price } = item;
   return (
-    <div className='item_container'>
+    <div className="item_container">
 
       <ItemStyle>
       {item.photo.map((photo:string, key:number) => {
@@ -25,7 +25,7 @@ const ItemComponent = ({ units, item, id }:Props) => {
       <Image src={photo.image.publicUrlTransformed}
       width={100}
       height={100}
-      alt={"imagenes producto"}
+      alt={'imagenes producto'}
     />
 
      </div>;
@@ -34,7 +34,7 @@ const ItemComponent = ({ units, item, id }:Props) => {
       <h3>{name}</h3>
       <span>${price * units}</span>
       {
-        units <= 1 ? <span style={{ marginLeft: '8px' }}> x {units} unidad</span> : <span style={{ marginLeft: '8px' }}> x {units} unidades</span>
+        units <= 1 ? <span style={{ marginLeft: "8px" }}> x {units} unidad</span> : <span style={{ marginLeft: '8px' }}> x {units} unidades</span>
       }
       </div>
       </ItemStyle>
