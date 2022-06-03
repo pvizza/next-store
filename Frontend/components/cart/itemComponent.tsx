@@ -1,6 +1,6 @@
 import { ItemStyle } from './style';
 import Image from 'next/image';
-import DeleteCart from '../deleteCart/deleteCart';
+import DeleteCart from "../deleteCart/deleteCart";
 
 interface Props {
   units: number
