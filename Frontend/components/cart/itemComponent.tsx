@@ -34,7 +34,7 @@ const ItemComponent = ({ units, item, id }:Props) => {
       <h3>{name}</h3>
       <span>${price * units}</span>
       {
-        units <= 1 ? <span style={{ marginLeft: "8px" }}> x {units} unidad</span> : <span style={{ marginLeft: '8px' }}> x {units} unidades</span>
+        units <= 1 ? <span style={{ marginLeft: '8px' }}> x {units} unidad</span> : <span style={{ marginLeft: "8px" }}> x {units} unidades</span>
       }
       </div>
       </ItemStyle>
