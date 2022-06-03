@@ -1,3 +1,3 @@
 module.exports = {
-  "*.tsx": ["npm run lint:tsx"],
+  "*.tsx": ["lint:fix"],
 };
