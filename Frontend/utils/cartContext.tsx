@@ -1,4 +1,4 @@
-import {createContext, useState, ReactNode} from "react"
+import { createContext, useState, ReactNode } from 'react';
 
 interface Context {
   toogleCart: () => void;
@@ -8,28 +8,25 @@ interface Context {
   CartProvider: ReactNode;
 }
 
-
-export const CartContext = createContext({} as Context) 
-export const CreateProvider = CartContext.Provider
+export const CartContext = createContext({} as Context);
+export const CreateProvider = CartContext.Provider;
 
 interface Props {
   children: React.ReactNode
 }
 
-export const CartProvider = ({children}:Props) => {
-  const [cart, setCart] = useState(false)
-  
-  const toogleCart = () => setCart(!cart)
+export const CartProvider = ({ children }:Props) => {
+  const [cart, setCart] = useState(false);
 
-  const closeCart = () => setCart(false)
+  const toogleCart = () => setCart(!cart);
 
-  const openCart = () => setCart(true)
+  const closeCart = () => setCart(false);
+
+  const openCart = () => setCart(true);
 
   return (
-    <CreateProvider value={{cart, toogleCart,CartProvider,closeCart,openCart}}>
+    <CreateProvider value={{ cart, toogleCart, CartProvider, closeCart, openCart }}>
       {children}
-    </CreateProvider> 
-  )
-
-}
-
+    </CreateProvider>
+  );
+};

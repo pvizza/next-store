@@ -8,7 +8,7 @@ gap:3rem;
 align-items: baseline;
 
 
-`
+`;
 export const OrderSummary = styled.div`
 width: 50%;
 /* border: 1px solid var(--black-border); */
@@ -19,7 +19,7 @@ box-shadow:var(--shadow);
   border-top:1px solid ;
 }
 
-` 
+`;
 export const PaymentDetails = styled.form`
 width: 50%;
 /* border: 1px solid var(--black-border); */
@@ -33,4 +33,4 @@ background-color: var(--checkout-background);
 label {
   display: block;
 }
-`
+`;

@@ -6,7 +6,7 @@ input {
   width:100%;
   font-size: 1.5rem;
 }
-`
+`;
 
 export const ProductsContainer = styled.section`
   position: absolute;

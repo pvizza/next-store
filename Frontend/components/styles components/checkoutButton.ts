@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const CheckoutButton = styled.button`
 background-color: #586dac;

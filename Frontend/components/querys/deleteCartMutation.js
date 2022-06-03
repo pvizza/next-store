@@ -5,5 +5,4 @@ export const DELETE_CART_MUTATION = gql`
     deleteCartProduct(where:{id: $id}) {
       id
       }
-      }`
-     
+      }`;

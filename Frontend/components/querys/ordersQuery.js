@@ -25,4 +25,4 @@ query order($id: ID!) {
     total
   } 
 }
-`
+`;

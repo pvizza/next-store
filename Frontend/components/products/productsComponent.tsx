@@ -1,21 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Product } from "../../interfaces/Product";
-import AddCartComponent from "../addCart/addCartComponent";
-import {ProductBox} from './style'
-import {FaCartPlus} from '@react-icons/all-files/fa/FaCartPlus'
-import BuyComponent from "../buyButton/buyComponent";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Product } from '../../interfaces/Product';
+import AddCartComponent from '../addCart/addCartComponent';
+import { ProductBox } from './style';
+import { FaCartPlus } from '@react-icons/all-files/fa/FaCartPlus';
+import BuyComponent from '../buyButton/buyComponent';
 interface Props {
   product: Product;
 }
-
 
 //! The main product page should only display one image.
 
 const Products = ({ product }: Props) => {
   return (
     <ProductBox>
-      {product.photo.map((photo:string,key:number) => {
+      {product.photo.map((photo:string, key:number) => {
         return (
          <div className="img_product" key={key}>
               <Link
@@ -25,7 +24,7 @@ const Products = ({ product }: Props) => {
                     src={photo.image.publicUrlTransformed}
                     width={300}
                     height={300}
-                    alt={"imagenes producto"}
+                    alt={'imagenes producto'}
                   />
                 </a>
               </Link>
@@ -44,7 +43,7 @@ const Products = ({ product }: Props) => {
       </div>
       </div>
       <BuyComponent/>
-      
+
     </ProductBox>
   );
 };

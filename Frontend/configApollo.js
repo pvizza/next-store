@@ -3,36 +3,38 @@ import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import { createUploadLink } from 'apollo-upload-client';
 import withApollo from 'next-with-apollo';
-import {endpointGQL} from './config';
+import { endpointGQL } from './config';
 
-//? CONTROL ERRORS
+// ? CONTROL ERRORS
 
 const createClient = ({ headers, initialState }) => {
   return new ApolloClient({
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
-        if (graphQLErrors)
+        if (graphQLErrors) {
           graphQLErrors.forEach(({ message, locations, path }) =>
             console.log(
               `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
             )
           );
-        if (networkError)
+        }
+        if (networkError) {
           console.log(
             `[Network error]: ${networkError}. Backend is unreachable. Is it running?`
           );
+        }
       }),
-      //? this uses apollo-link-http under the hood, so all the options here come from that package
+      // ? this uses apollo-link-http under the hood, so all the options here come from that package
       createUploadLink({
-        //@ts-ignore
+        // @ts-ignore
         uri: endpointGQL,
         //! change url for env variables
         fetchOptions: {
-          credentials: 'include',
+          credentials: 'include'
         },
-        //? pass the headers along from this request. This enables SSR with logged in state
-        headers,
-      }),
+        // ? pass the headers along from this request. This enables SSR with logged in state
+        headers
+      })
     ]),
     cache: new InMemoryCache({
       typePolicies: {
@@ -40,11 +42,11 @@ const createClient = ({ headers, initialState }) => {
           fields: {
 
             // allProducts: paginationField(),
-          },
-        },
-      },
-    }).restore(initialState || {}),
+          }
+        }
+      }
+    }).restore(initialState || {})
   });
-}
+};
 
 export default withApollo(createClient, { getDataFromTree });

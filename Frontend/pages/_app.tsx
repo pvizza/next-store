@@ -1,14 +1,14 @@
-import '../styles/globals.css'
-import "nprogress/nprogress.css";
-import type { AppProps } from 'next/app'
-import Main from '../components/main/main'
-import {ApolloProvider} from '@apollo/client'
-import configApollo from '../configApollo'
-import {CartProvider} from '../utils/cartContext';
+import '../styles/globals.css';
+import 'nprogress/nprogress.css';
+import type { AppProps } from 'next/app';
+import Main from '../components/main/main';
+import { ApolloProvider } from '@apollo/client';
+import configApollo from '../configApollo';
+import { CartProvider } from '../utils/cartContext';
 
-function MyApp({ Component, pageProps,apollo }: AppProps) {
+function MyApp ({ Component, pageProps, apollo }: AppProps) {
   return (
-  
+
       <ApolloProvider client={apollo}>
       <CartProvider>
       <Main>
@@ -16,8 +16,7 @@ function MyApp({ Component, pageProps,apollo }: AppProps) {
       </Main>
       </CartProvider>
       </ApolloProvider>
-  )
-  
+  );
 }
 
-export default configApollo(MyApp)
+export default configApollo(MyApp);

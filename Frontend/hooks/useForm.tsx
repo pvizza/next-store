@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react';
 type Prod = {
   name: string,
   price: number,
@@ -11,16 +11,15 @@ type Prod = {
 type Init = object
 
 const useForm = (init:Init) => {
-  const [values, setValues] = useState<Prod>({} as Prod)
+  const [values, setValues] = useState<Prod>({} as Prod);
 
   // TODO: useEffect [VALUE] for update products
- useEffect(()=> {
-  setValues(init)
- },[])
+  useEffect(() => {
+    setValues(init);
+  }, []);
 
   const handleChange = (e:any) => {
-    let {value,type,name,files} = e.target
-    
+    let { value, type, name, files } = e.target;
 
     if (type === 'number') {
       value = parseInt(value);
@@ -30,22 +29,20 @@ const useForm = (init:Init) => {
       [value] = files;
     }
 
-
     setValues({
       ...values,
-      [name]: value,
-    })
-    
-  } 
+      [name]: value
+    });
+  };
   const clearForm = () => {
-    setValues(init)
-  }
- 
+    setValues(init);
+  };
+
   return {
     handleChange,
     values,
     clearForm
-  }
-}
+  };
+};
 
-export default useForm
+export default useForm;

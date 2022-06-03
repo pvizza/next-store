@@ -1,7 +1,7 @@
-import { useQuery } from "@apollo/client";
-import { USER_QUERY } from "../components/querys/userQuery";
+import { useQuery } from '@apollo/client';
+import { USER_QUERY } from '../components/querys/userQuery';
 
-export function  useUser() {
+export function useUser () {
   const { data } = useQuery(USER_QUERY);
 
   return data?.authenticatedItem;

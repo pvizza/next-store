@@ -1,8 +1,8 @@
-import Header from '../header/header'
-import {ThemeProvider, createGlobalStyle} from 'styled-components'
-import {Theme} from '../../theme'
+import Header from '../header/header';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { Theme } from '../../theme';
 
-const main = ({children}) => {
+const main = ({ children }) => {
   return (
     <div>
       <ThemeProvider theme={Theme}>
@@ -10,7 +10,7 @@ const main = ({children}) => {
       {children}
       </ThemeProvider>
     </div>
-  )
-}
+  );
+};
 
-export default main
+export default main;

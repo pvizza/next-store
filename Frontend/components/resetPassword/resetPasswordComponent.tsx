@@ -1,52 +1,49 @@
-import { useMutation } from "@apollo/client"
-import router from "next/router"
-import { useState } from "react"
-import useForm from "../../hooks/useForm"
-import Form from "../form/style"
-import { NEW_PASSWORD_MUTATION } from "../querys/signUpMutation"
+import { useMutation } from '@apollo/client';
+import router from 'next/router';
+import { useState } from 'react';
+import useForm from '../../hooks/useForm';
+import Form from '../form/style';
+import { NEW_PASSWORD_MUTATION } from '../querys/signUpMutation';
 
 interface Props {
   token:string | string[]
 }
 
-const ResetPasswordComponent = ({token}:Props) => {
-  const [confirmPass, setConfirmPass] = useState('')
+const ResetPasswordComponent = ({ token }:Props) => {
+  const [confirmPass, setConfirmPass] = useState('');
 
-  const {values, handleChange, clearForm} = useForm({
-    password:'',
-    email:'pablobusd@gmail.com',
+  const { values, handleChange, clearForm } = useForm({
+    password: '',
+    email: 'pablobusd@gmail.com',
     token
-  })
+  });
 
-  //TODO: ADD DINAMIC EMAIL
+  // TODO: ADD DINAMIC EMAIL
 
-  const [newPassword, {data,loading, error}] = useMutation(NEW_PASSWORD_MUTATION,{
-    variables: values,
-  })
-  
-const successNewPass = data?.redeemUserPasswordResetToken
+  const [newPassword, { data, loading, error }] = useMutation(NEW_PASSWORD_MUTATION, {
+    variables: values
+  });
+
+  const successNewPass = data?.redeemUserPasswordResetToken;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values)
-    if(values.password === confirmPass){
-      if(values.password.length >= 8 && confirmPass.length >= 8){
+    console.log(values);
+    if (values.password === confirmPass) {
+      if (values.password.length >= 8 && confirmPass.length >= 8) {
+        const res = await newPassword().catch(err => console.log(err));
+        console.log(res);
+        clearForm();
+      } else console.log('La contraseña debe tener al menos 8 caracteres');
+    } else console.log('Las contraseñas no coinciden');
+  };
 
-    const res = await newPassword().catch(err => console.log(err))
-    console.log(res)
-    clearForm();
-    
-      } else console.log('La contraseña debe tener al menos 8 caracteres')
-    
-    }else console.log('Las contraseñas no coinciden')
-  }
-
-  //TODO: ADD ERROR MESSAGGES
+  // TODO: ADD ERROR MESSAGGES
 
   const handleConfirm = (e) => {
-    setConfirmPass(e.target.value)
-  }
-  if (error) return <p>{error.message}</p>
+    setConfirmPass(e.target.value);
+  };
+  if (error) return <p>{error.message}</p>;
   return <div>
     <Form onSubmit={handleSubmit}>
     <fieldset className='ariabusy' aria-busy={loading}></fieldset>
@@ -61,7 +58,7 @@ const successNewPass = data?.redeemUserPasswordResetToken
       </>
       }
     </Form>
-  </div>
-}
+  </div>;
+};
 
-export default ResetPasswordComponent
+export default ResetPasswordComponent;

@@ -4,4 +4,4 @@ export const PAGINATION_PRODUCT_QUERY = gql`
   query paginationProduct {
     productsCount
   }
-`
+`;

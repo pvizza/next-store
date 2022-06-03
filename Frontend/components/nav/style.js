@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import {devices} from '../../styles/device';
-
+import { devices } from '../../styles/device';
 
 const NavStyles = styled.ul`
 

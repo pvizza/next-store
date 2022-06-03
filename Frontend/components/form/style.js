@@ -1,4 +1,4 @@
-import styled, { keyframes }  from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const loading = keyframes`
   from {
@@ -9,7 +9,6 @@ const loading = keyframes`
     
   }
 `;
-
 
 const Form = styled.form`
   

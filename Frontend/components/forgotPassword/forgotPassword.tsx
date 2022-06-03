@@ -7,28 +7,25 @@ interface Props {
   callback:() => void
 }
 
-
-const ForgotPasswordComponent = ({callback}:Props) => {
-  console.log(callback)
-  const {handleChange, values, clearForm} = useForm({
-    email:''
-  })
-  const [resetPassword, {data,loading, error}] = useMutation(RESET_PASSWORD_MUTATION,{
-    variables: values,
-  })
+const ForgotPasswordComponent = ({ callback }:Props) => {
+  console.log(callback);
+  const { handleChange, values, clearForm } = useForm({
+    email: ''
+  });
+  const [resetPassword, { data, loading, error }] = useMutation(RESET_PASSWORD_MUTATION, {
+    variables: values
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await resetPassword().catch(err => console.log(err))
-    console.log(data)
-    console.log(res)
+    const res = await resetPassword().catch(err => console.log(err));
+    console.log(data);
+    console.log(res);
     clearForm();
-  
-   }
+  };
 
-
-  const isReset = data?.sendUserPasswordResetLink
-  if(error) return <p>{error.message}</p> 
+  const isReset = data?.sendUserPasswordResetLink;
+  if (error) return <p>{error.message}</p>;
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -42,7 +39,7 @@ const ForgotPasswordComponent = ({callback}:Props) => {
       }
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPasswordComponent
+export default ForgotPasswordComponent;

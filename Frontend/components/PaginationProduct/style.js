@@ -43,9 +43,9 @@ export const PaginationStyle = styled.div`
 
     }
   
-`
+`;
 export const PaginationContainer = styled.div`
     display: flex;
     flex-direction: column;
   
-`
+`;

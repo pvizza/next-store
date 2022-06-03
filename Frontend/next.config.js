@@ -2,9 +2,9 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['res.cloudinary.com']
   },
   env: {
-    API_PAYMENT: "http://localhost:5000"
+    API_PAYMENT: 'http://localhost:5000'
   }
-}
+};
