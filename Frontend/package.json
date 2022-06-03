@@ -16,7 +16,7 @@
 
   "lint-staged": {
     "*.{ts,tsx}": [
-      "lint:fix"
+      "npm run lint:fix"
     ]
   },
   "dependencies": {
