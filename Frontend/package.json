@@ -16,7 +16,7 @@
 
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix --ext .js,.tsx ."
+      "lint:fix"
     ]
   },
   "dependencies": {
