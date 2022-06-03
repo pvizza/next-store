@@ -6,7 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint:fix": "eslint --fix --ext .js,.tsx .",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "pre-commit": "lint-staged"
+
   },
   "lint-staged": {
     "*.{ts,tsx}": [
