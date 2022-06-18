@@ -4,7 +4,7 @@ import { USER_QUERY } from '../querys/userQuery';
 import { useRouter } from 'next/router';
 import { CartContext } from '../../utils/cartContext';
 import { useContext } from 'react';
-import { CheckoutButton } from '../styles components/checkoutButton';
+import { ButtonComponent } from '../button/styles';
 
 const Checkout = ({ products }: any) => {
   const router = useRouter();
@@ -67,7 +67,9 @@ const Checkout = ({ products }: any) => {
     router.push({ pathname: `/order/${data?.checkout.id}` });
   };
   return (
-    <CheckoutButton onClick={handleClick}>Checkout</CheckoutButton>
+    <>
+    <ButtonComponent onClick={handleClick} width={'100%'}>Checkout</ButtonComponent>
+    </>
   );
 };
 

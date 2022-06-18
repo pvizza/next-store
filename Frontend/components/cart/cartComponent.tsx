@@ -13,23 +13,22 @@ const CartComponent = () => {
   return (
     <div>
       <CartStyle isOpen={cartContext.cart}>
-      <header>
-        <h1>Tu Carrito</h1>
+        <header>
+          <h1>Tu Carrito</h1>
 
-      </header>
-      <ul>
-      {cartUser?.cart.map((item:any) => <ItemComponent key={item.id} id={item.id} item={item.product} units={item.units}/>)}
-      </ul>
-      <footer>
-        {/* <div> */}
-        <h3>Total: ${calcPrice(cartUser?.cart)}</h3>
-        {/* <p style={{margin:'0'}}>con envio $300</p> */}
-        {/* </div> */}
-        <Checkout products={cartUser}/>
-      </footer>
+        </header>
+        <ul>
+          {cartUser?.cart.map((item: any) => <ItemComponent key={item.id} id={item.id} item={item.product} units={item.units} />)}
+        </ul>
+        <div className='cart_total_container'>
+          <h3 className='cart_total_price'>Total</h3> <span>${calcPrice(cartUser?.cart)}</span>
+        </div>
+        <footer>
+          <Checkout products={cartUser} />
+        </footer>
 
       </CartStyle>
-      </div>
+    </div>
   );
 };
 

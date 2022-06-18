@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { devices } from "../../styles/device";
+import styled from 'styled-components';
+import { devices } from '../../styles/device';
 
 type Props = {
   isOpen?: boolean;
@@ -7,7 +7,6 @@ type Props = {
 
 export const CartStyle = styled.div<Props>`
   padding: 20px;
-  /* position: relative; */
   background: #ffff;
   position: fixed;
   top: 0;
@@ -22,7 +21,7 @@ export const CartStyle = styled.div<Props>`
   z-index: 5;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  ${({ isOpen }) => isOpen && `transform: translateX(0);`};
+  ${({ isOpen }) => isOpen && 'transform: translateX(0);'};
 
   h1 {
     margin: 0;
@@ -51,22 +50,27 @@ export const CartStyle = styled.div<Props>`
       margin: 0;
     }
     footer {
-      border-top: 1px solid;
+      border:none;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
     }
-    h3 {
+    h3.cart_total_price {
       margin: 0;
+      font-weight: 400;
     }
     .item_container {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 1px solid;
       &:last-child {
         border-bottom: 0px;
       }
+    }
+    .cart_total_container {
+      border-top: 1px solid rgba(0,0,0,.1);
+      display: flex;
+      justify-content: space-between;
     }
   }
 `;
@@ -79,5 +83,34 @@ export const ItemStyle = styled.li`
   }
   h3 {
     margin: 0;
+  }
+
+  @media ${devices.mobile} {
+    width: 100%;
+    .price_container {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      align-items: baseline;
+      flex-wrap: wrap;
+
+      h3{
+        flex: 1 1 30%;
+        font-weight: 400;
+      }
+        .units_container {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+          margin-bottom: 40px;
+
+              p {
+                background: #8b8b8b82;
+                width: 3.5rem;
+                border-radius: 5px;
+                text-align: center;
+            }
+        }
+    }
   }
 `;

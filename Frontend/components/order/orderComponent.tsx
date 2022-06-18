@@ -3,6 +3,7 @@ import { ORDERS_QUERY } from '../querys/ordersQuery';
 import { OrderStyled, OrderSummary, PaymentDetails } from './orderStyled';
 import { useRouter } from 'next/router';
 import Axios from 'axios';
+import { ButtonComponent } from '../button/styles';
 
 const headersGetRequest = {
   headers: {
@@ -58,37 +59,41 @@ const OrderComponent = ({ id, url }: Props) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   return (
-    <OrderStyled>
-      <OrderSummary>
-        <h3>Detalle Compra</h3>
-        {orders.item.map((product: any, key: number) => (
-          <div key={key}>
-            <p>{product.name}</p>
-            <span>${product.price} </span>
-            <span>{product.units}</span>
-          </div>
-        ))}
+    <>
+      <OrderStyled>
+        <OrderSummary>
+          <h3>Detalle Compra</h3>
+          {orders.item.map((product: any, key: number) => (
+            <div key={key}>
+              <p>{product.name}</p>
+              <span>${product.price} </span>
+              <span>{product.units}</span>
+            </div>
+          ))}
 
-        <p>Cantidad de productos: {orders.itemCount}</p>
-      </OrderSummary>
-      <PaymentDetails>
-        <h3>Detalles de envio</h3>
-        <label htmlFor="email"> Ingresa tu email</label>
-        <input type="email" />
-        <label htmlFor="text"> Ingresa tu direccion</label>
-        <input type="text" />
-        <label htmlFor="text"> Ingresa tu ciudad</label>
-        <input type="text" />
-        <label htmlFor="number"> Ingresa tu codigo postal</label>
-        <input type="number" />
-        <div className="total">
-          <p>Subtotal: ${orders.total}</p>
-          <p>Envio: $500</p>
-          <p>Total: ${orders.total + 500}</p>
-          <a>Abonar Pedido</a>
-        </div>
-      </PaymentDetails>
-    </OrderStyled>
+          <p>Cantidad de productos: {orders.itemCount}</p>
+        </OrderSummary>
+        <PaymentDetails>
+          <h3>Detalles de envio</h3>
+          <label htmlFor="email"> Ingresa tu email</label>
+          <input type="email" />
+          <label htmlFor="text"> Ingresa tu direccion</label>
+          <input type="text" />
+          <label htmlFor="text"> Ingresa tu ciudad</label>
+          <input type="text" />
+          <label htmlFor="number"> Ingresa tu codigo postal</label>
+          <input type="number" />
+          <div className="total">
+            <p>Subtotal: ${orders.total}</p>
+            <p>Envio: $500</p>
+            <p>Total: ${orders.total + 500}</p>
+            <a>Abonar Pedido</a>
+          </div>
+        </PaymentDetails>
+
+        <ButtonComponent width={'100%'}>Payment</ButtonComponent>
+      </OrderStyled>
+    </>
   );
 };
 

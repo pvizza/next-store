@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import {devices} from '../../styles/device';
-
+import { devices } from '../../styles/device';
 
 type Props = {
   open?:boolean
@@ -48,12 +47,12 @@ a {
   
 }
 
-`
+`;
 
 export const HeaderContainer = styled.header<Props>`
 
-     height: ${props => (props.open ? "100vh" : "0vh")}; 
-     transition:${props => (props.open ? "height 0.5s ease-in-out" : "height 0.5s ease-in-out")};
+     height: ${props => (props.open ? '100vh' : '0vh')}; 
+     transition:${props => (props.open ? 'height 0.5s ease-in-out' : 'height 0.5s ease-in-out')};
      background-color: #586dac; 
 
     .bar {
@@ -77,9 +76,9 @@ export const HeaderContainer = styled.header<Props>`
     
   }
  
- `
+ `;
 
-  export const HeaderMobile = styled.div`
+export const HeaderMobile = styled.div`
     
     display:none;
 
@@ -88,4 +87,4 @@ export const HeaderContainer = styled.header<Props>`
       justify-content:center ;
     }
   
-  `
+  `;

@@ -23,7 +23,8 @@
         "react/react-index": "off",
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
        
         
     }

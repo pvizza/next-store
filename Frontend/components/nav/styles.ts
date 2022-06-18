@@ -5,7 +5,6 @@ type Props = {
   open?:boolean
 }
 
-
 export const NavContainer = styled.div`
  
  width:100%;
@@ -15,7 +14,7 @@ export const NavContainer = styled.div`
  z-index:30;
  background-color: #586dac ;
 
-`
+`;
 
 export const Navbar = styled.div`
 margin:auto;
@@ -36,7 +35,7 @@ justify-content:space-between;
   align-items: center;
 }
 
-`
+`;
 export const Menu = styled.ul<Props>`
 height:100% ;
 display:flex;
@@ -53,14 +52,14 @@ margin:0;
   width:100%;
   height:100vh;
   position:absolute;
-  left: ${props => (props.open ? 0 : "-100%")};
+  left: ${props => (props.open ? 0 : '-100%')};
   flex-direction:column ;
   transition:0.2s all;
   background-color: #586dac;
   top:50%
 }
 
-`
+`;
 
 export const Item = styled.li`
 height:100%;
@@ -121,7 +120,7 @@ button {
 
 }
 
-`
+`;
 
 export const MenuMobile = styled.div`
 display:none;
@@ -132,7 +131,7 @@ display:none;
   align-items: center;
   z-index:100 ;
 
-}`
+}`;
 
 export const MenuCart = styled.div`
 display:none;
@@ -145,5 +144,4 @@ display:none;
 
 }
 
-`
-
+`;
