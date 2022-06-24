@@ -4,6 +4,9 @@ import { OrderStyled, OrderSummary, PaymentDetails } from './orderStyled';
 import { useRouter } from 'next/router';
 import Axios from 'axios';
 import { ButtonComponent } from '../button/styles';
+import { useWindow } from '../../hooks/useWindow';
+import PaymentDetailComponent from './paymentDetailComponent';
+import { useState } from 'react';
 
 const headersGetRequest = {
   headers: {
@@ -23,13 +26,15 @@ interface Props {
 }
 
 const OrderComponent = ({ id, url }: Props) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
+  const isMobile = useWindow().isMobile;
+
   const { data, error, loading } = useQuery(ORDERS_QUERY, {
     variables: { id }
   });
 
   const orders = data?.order;
-  console.log(orders);
 
   const payload = orders?.item.map((product: any) => {
     return product.name;
@@ -74,24 +79,30 @@ const OrderComponent = ({ id, url }: Props) => {
           <p>Cantidad de productos: {orders.itemCount}</p>
         </OrderSummary>
         <PaymentDetails>
-          <h3>Detalles de envio</h3>
-          <label htmlFor="email"> Ingresa tu email</label>
-          <input type="email" />
-          <label htmlFor="text"> Ingresa tu direccion</label>
-          <input type="text" />
-          <label htmlFor="text"> Ingresa tu ciudad</label>
-          <input type="text" />
-          <label htmlFor="number"> Ingresa tu codigo postal</label>
-          <input type="number" />
-          <div className="total">
-            <p>Subtotal: ${orders.total}</p>
-            <p>Envio: $500</p>
-            <p>Total: ${orders.total + 500}</p>
-            <a>Abonar Pedido</a>
-          </div>
+          {!isOpen
+            ? <>
+              <h3>Detalles de envio</h3>
+              <label htmlFor="email"> Ingresa tu email</label>
+              <input type="email" />
+              <label htmlFor="text"> Ingresa tu direccion</label>
+              <input type="text" />
+              <label htmlFor="text"> Ingresa tu ciudad</label>
+              <input type="text" />
+              <label htmlFor="number"> Ingresa tu codigo postal</label>
+              <input type="number" />
+              <div className="total">
+                <p>Subtotal: ${orders.total}</p>
+                <p>Envio: $500</p>
+                <p>Total: ${orders.total + 500}</p>
+                <a>Abonar Pedido</a>
+              </div>
+            </>
+            : <PaymentDetailComponent />}
+
         </PaymentDetails>
 
-        <ButtonComponent width={'100%'}>Payment</ButtonComponent>
+        <ButtonComponent onClick={() => setIsOpen(true)} width={'100%'}>Payment</ButtonComponent>
+
       </OrderStyled>
     </>
   );

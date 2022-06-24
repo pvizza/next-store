@@ -8,9 +8,9 @@ type Prod = {
   email: string,
 }
 
-type Init = object
+type Init = any
 
-const useForm = (init:Init) => {
+const useForm = (init: Init) => {
   const [values, setValues] = useState<Prod>({} as Prod);
 
   // TODO: useEffect [VALUE] for update products
@@ -18,7 +18,7 @@ const useForm = (init:Init) => {
     setValues(init);
   }, []);
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     let { value, type, name, files } = e.target;
 
     if (type === 'number') {

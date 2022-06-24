@@ -1,11 +1,14 @@
 import styled from 'styled-components';
+import { devices } from '../../styles/device';
 
 type Props = {
 width:string;
 }
 
 export const ButtonComponent = styled.button<Props>`
- 
+
+
+@media ${devices.mobile} {
  width:${props => props.width};
  padding: 15px 25px;
  border: unset;
@@ -43,4 +46,8 @@ export const ButtonComponent = styled.button<Props>`
 &:hover::before {
  width: 100%;
 }
+
+
+ }
+ 
 `;
